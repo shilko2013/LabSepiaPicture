@@ -18,6 +18,6 @@ int main() {
         fclose(f);
     image_destroy(img);
     free(img);
-    printf("%lumc",time(0)-start);
+    printf("%luc",time(0)-start);
     return 0;
 }

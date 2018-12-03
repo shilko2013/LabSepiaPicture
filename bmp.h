@@ -29,7 +29,7 @@ struct bmp_header {
 };
 
 struct pixel {
-    uint8_t r, g, b;
+    uint8_t b, g, r;
 };
 
 #pragma pack(pop)
