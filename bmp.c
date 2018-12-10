@@ -5,6 +5,10 @@
 #include <time.h>
 #include "bmp.h"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 static enum read_status read_bmp_header(FILE *file, struct bmp_header *header) {
 
     if (!file) return READ_INVALID_FILE;
@@ -17,7 +21,7 @@ static enum read_status read_bmp_header(FILE *file, struct bmp_header *header) {
 
     if (fread(&header->info, sizeof(header->info), 1, file) != 1) return READ_INVALID_FILE;
 
-    if (header->info.biSize != 0x28) return READ_FILE_UNSUPPORTED_VERSION;
+    //if (header->info.biSize != 0x28) return READ_FILE_UNSUPPORTED_VERSION;
 
     if (header->info.biWidth < 1 || header->info.biHeight < 1) return READ_INVALID_BITMAP_INFO_HEADER;
 
@@ -270,7 +274,7 @@ static void sepia_one( struct pixel* const pixel ) {
     static const float c[3][3] = {
             { .393f, .769f, .189f },
             { .349f, .686f, .168f },
-            { .272f, .543f, .131f } };
+            { .272f, .534f, .131f } };
     struct pixel const old = *pixel;
     pixel->r = sat(
             old.r * c[0][0] + old.g * c[0][1] + old.b * c[0][2]
